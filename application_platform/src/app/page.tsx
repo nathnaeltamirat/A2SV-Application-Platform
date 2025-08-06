@@ -2,11 +2,12 @@ import CodingProfile from "@/components/application-submission/CodingProfile";
 import EssayResume from "@/components/application-submission/EssayResume";
 import PersonalInfo from "@/components/application-submission/PersonalInfo";
 import ApplyPage from "./apply/page";
+import AdminPage from "./admin/page";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <ApplyPage/>
+    <div >
+      <AdminPage/>
     </div>
   );
 }
