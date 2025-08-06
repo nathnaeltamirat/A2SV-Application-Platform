@@ -8,7 +8,6 @@ import {
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: applicationState = {
-  resume: "", //file
   student_id:"",
   school: "",
   degree: "",
@@ -34,10 +33,10 @@ const applicantSlice = createSlice({
       state.student_id=student_id;
     },
     set_essay_resumes: (state, action: PayloadAction<essayResume>) => {
-      const { essay_why_a2sv, resume, essay_about_you,  } = action.payload;
+      const { essay_why_a2sv, essay_about_you,  } = action.payload;
       state.essay_about_you = essay_about_you;
       state.essay_why_a2sv = essay_why_a2sv;
-      state.resume = resume;
+
     },
   },
 });

@@ -1,5 +1,5 @@
 export interface applicationState {
-  resume: string | null | File;
+
   school: string;
   degree: string;
   leetcode_handle: string;
@@ -23,5 +23,5 @@ export interface personalInfo {
 export interface essayResume {
   essay_why_a2sv: string;
   essay_about_you: string;
-  resume:string | File |null;
+  resume?: FileList | null;
 }

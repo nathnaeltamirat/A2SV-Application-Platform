@@ -7,7 +7,7 @@ import AdminPage from "./admin/page";
 export default function Home() {
   return (
     <div >
-      <AdminPage/>
+      <ApplyPage/>
     </div>
   );
 }

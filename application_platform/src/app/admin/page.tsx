@@ -36,15 +36,15 @@ const AdminPage = () => {
         <h1 className="font-bold text-xl py-3">Admin Command Center</h1>
 
         <div className="display my-3 flex justify-between flex-wrap">
-          <div className="w-[30%] mr-2 p-2 rounded-md pb-2 bg-purple-400">
+          <div className="w-[30%] mr-2 p-2 rounded-md pb-2 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-700">
             <p>Total Users</p>
             <p className="font-bold">{numberOfUsers}</p>
           </div>
-          <div className="w-[30%] mr-2 p-2 rounded-md pb-2 bg-green-400">
+          <div className="w-[30%] mr-2 p-2 rounded-md pb-2 bg-gradient-to-r from-green-400 via-green-500 to-green-700">
             <p>Total Applicants (G7)</p>
             <p className="font-bold">{numberApplicants}</p>
           </div>
-          <div className="w-[30%] p-2 rounded-md pb-2 mr-2  bg-orange-400">
+          <div className="w-[30%] p-2 rounded-md pb-2 mr-2  bg-gradient-to-r from-orange-400 via-orange-400 to-orange-700">
             <p>Active Cycles</p>
             <p className="font-bold">{numberOfCycles}</p>
           </div>
