@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 
 export type Application = {
   id: string;
@@ -14,18 +14,22 @@ export type Application = {
   essay2: string;
   resumeUrl: string;
   assignedReviewer?: string;
-  activityCheck?: string;
-  resumeScore?: number;
-  essayScore?: number;
-  techInterview?: number;
-  behavioral?: number;
-  interviewerNotes?: string;
+};
+
+type Review = {
+  activity_check_notes?: string;
+  resume_score?: number;
+  essay_why_a2sv_score?: number;
+  essay_about_you_score?: number;
+  technical_interview_score?: number;
+  behavioral_interview_score?: number;
+  interview_notes?: string;
 };
 
 export default function ManageApplicant() {
   const router = useRouter();
   const { application } = router.query;
-  
+
   const app = useMemo(() => {
     try {
       return application ? JSON.parse(application as string) : null;
@@ -34,10 +38,22 @@ export default function ManageApplicant() {
     }
   }, [application]);
 
+  const [review, setReview] = useState<Review | null>(null);
+
+  useEffect(() => {
+    if (app?.id) {
+      fetch(`https://a2sv-application-platform-backend-team9.onrender.com/reviews/${app.id}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+          if (data) setReview(data);
+        })
+        .catch(err => console.error("Error fetching review:", err));
+    }
+  }, [app?.id]);
+
   if (!app) {
     return <div>Loading...</div>;
   }
-
 
   return (
     <div className="bg-gray-100 p-6 min-h-screen">
@@ -106,19 +122,29 @@ export default function ManageApplicant() {
       {/* Reviewer Feedback */}
       <div className="mt-6 bg-white p-6 rounded-xl shadow col-span-2">
         <h2 className="text-lg font-semibold mb-4">Reviewer's Feedback ({app.assignedReviewer || "Not Assigned"})</h2>
-        <p className="text-sm text-gray-700 mb-4">Activity Check: <span className="font-medium">{app.activityCheck || "N/A"}</span></p>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
-          <p><span className="font-medium">Resume Score:</span> {app.resumeScore || "-"}</p>
-          <p><span className="font-medium">Essay Score:</span> {app.essayScore || "-"}</p>
-          <p><span className="font-medium">Tech Interview:</span> {app.techInterview || "-"}</p>
-          <p><span className="font-medium">Behavioral:</span> {app.behavioral || "-"}</p>
-        </div>
+        {review ? (
+          <>
+            <p className="text-sm text-gray-700 mb-4">
+              Activity Check Notes: <span className="font-medium">{review.activity_check_notes || "N/A"}</span>
+            </p>
 
-        <div className="mt-4 text-sm">
-          <p className="font-medium">Interviewer Notes:</p>
-          <p>{app.interviewerNotes || "No notes available."}</p>
-        </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700">
+              <p><span className="font-medium">Resume Score:</span> {review.resume_score ?? "-"}</p>
+              <p><span className="font-medium">Essay 1 Score:</span> {review.essay_about_you_score ?? "-"}</p>
+              <p><span className="font-medium">Essay 2 Score:</span> {review.essay_why_a2sv_score ?? "-"}</p>
+              <p><span className="font-medium">Technical Interview:</span> {review.technical_interview_score ?? "-"}</p>
+              <p><span className="font-medium">Behavioral Interview:</span> {review.behavioral_interview_score ?? "-"}</p>
+            </div>
+
+            <div className="mt-4 text-sm">
+              <p className="font-medium">Interviewer Notes:</p>
+              <p>{review.interview_notes || "No notes available."}</p>
+            </div>
+          </>
+        ) : (
+          <p className="text-sm text-gray-600 italic">No review submitted yet.</p>
+        )}
       </div>
     </div>
   );

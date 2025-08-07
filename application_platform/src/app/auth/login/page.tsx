@@ -66,9 +66,11 @@ export default function LoginPage() {
       );
       const responseData = await response.json();
       if (response.ok) {
-        localStorage.setItem('accessToken', responseData.access);
-        localStorage.setItem('refreshToken', responseData.refresh);
+        localStorage.setItem('accessToken', responseData.data.access);
+        localStorage.setItem('refreshToken', responseData.data.refresh);
+        localStorage.setItem('role', responseData.data.role);
         alert('Login successful!');
+       
         window.location.href = '/';
       } else {
         setError(responseData.detail || 'Login failed. Please check your credentials.');
@@ -80,6 +82,28 @@ export default function LoginPage() {
       setIsLoading(false);
     }
   };
+//   const fetchApplicantProfile = async (accessToken: String) => {
+//   try {
+//     const response = await fetch('https://a2sv-application-platform-backend-team9.onrender.com/applicants/me', {
+//       method: 'GET',
+//       headers: {
+//         'Authorization': `Bearer ${accessToken}`,
+//       },
+//     });
+
+//     const profileData = await response.json();
+
+//     if (response.ok) {
+      
+//       localStorage.setItem('applicantProfile', JSON.stringify(profileData));
+//       console.log('Profile data:', profileData);
+//     } else {
+//       console.error('Failed to fetch profile:', profileData.message);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching profile:', error);
+//   }
+// };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
