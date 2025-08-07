@@ -55,13 +55,16 @@ const CreateNewUser = () => {
           </div>
           <div>
             <label className='block text-gray-700 font-medium mb-2'>Role</label>
-            <input
-              type='text'
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              className='w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-              placeholder='e.g. reviewer, admin'
-            />
+                <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                    className='w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white'
+                >
+                    <option value='' disabled>Select a role</option>
+                    <option value='applicant'>Applicant</option>
+                    <option value='reviewer'>Reviewer</option>
+                    <option value='manager'>Manager</option>
+                </select>
           </div>
         </div>
 

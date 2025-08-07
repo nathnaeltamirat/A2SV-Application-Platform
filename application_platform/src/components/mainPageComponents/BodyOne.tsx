@@ -27,6 +27,7 @@ const BodyOne = () => {
            Join an elite community of Africa's brightest minds, and get fast-tracked to a software engineering career at the world's leading tech companies.
         </p>
         <div className="mt-8">
+          {/* <Link href = '/adminFunctionality/createNewUser'><StartApplication/></Link> */}
           <Link href = '/auth/signup'><StartApplication/></Link>
         </div>
         </div>
