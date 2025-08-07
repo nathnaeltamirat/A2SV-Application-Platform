@@ -7,18 +7,21 @@ import BodyFive from './BodyFive';
 import Footer from '../footer/Footer';
 // import bodyone from '../../app/auth/signup'
 import Link from 'next/link';
+import LandingHeader from '../header/LandingHeader'
 
 
 const BodyOne = () => {
   return (
     <>
+      <LandingHeader/>
       <div
-        className="relative h-[70vh] flex items-center justify-center px-4 md:px-20 text-white"
+        className="relative h-[78vh] flex items-center justify-center px-4 md:px-20 text-white"
         style={{
               backgroundImage:'url(https://media.licdn.com/dms/image/v2/D5612AQFhrt7YPQfXNQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1690152312090?e=2147483647&v=beta&t=JQ1VHQl0A_A5Blkhbj0fmndJjuH-61SZoOVI3Ei4UUk)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}>
+
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 max-w-3xl text-center">
         <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">Forge Your Future in Tech</h1>

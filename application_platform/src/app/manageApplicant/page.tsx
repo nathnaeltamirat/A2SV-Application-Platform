@@ -49,7 +49,6 @@ export default function ManageApplicant() {
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Applicant Profile */}
         <div className="col-span-2 bg-white p-6 rounded-xl shadow">
           <h2 className="text-lg font-semibold mb-4">Applicant Profile</h2>
           <div className="grid grid-cols-2 gap-4 text-sm text-gray-700">
@@ -103,7 +102,6 @@ export default function ManageApplicant() {
         </div>
       </div>
 
-      {/* Reviewer Feedback */}
       <div className="mt-6 bg-white p-6 rounded-xl shadow col-span-2">
         <h2 className="text-lg font-semibold mb-4">Reviewer's Feedback ({app.assignedReviewer || "Not Assigned"})</h2>
         <p className="text-sm text-gray-700 mb-4">Activity Check: <span className="font-medium">{app.activityCheck || "N/A"}</span></p>
