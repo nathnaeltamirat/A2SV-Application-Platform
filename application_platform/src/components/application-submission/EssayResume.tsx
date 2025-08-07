@@ -1,9 +1,15 @@
-'use client'
+"use client";
 
 import { RootState } from "@/store/store";
 import { essayResume } from "@/types/applicant.types";
 import { useForm } from "react-hook-form";
-import React, { ChangeEvent, forwardRef, RefObject, useImperativeHandle, useState } from "react";
+import React, {
+  ChangeEvent,
+  forwardRef,
+  RefObject,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { set_essay_resumes } from "@/features/applicant/applicantSlice";
 import { setResumeFile } from "@/utils/fileStore";
@@ -60,10 +66,12 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
 
   const submitHandler = async (data: essayResume) => {
     try {
-      dispatch(set_essay_resumes({
-        essay_about_you: data.essay_about_you,
-        essay_why_a2sv: data.essay_why_a2sv,
-      }));
+      dispatch(
+        set_essay_resumes({
+          essay_about_you: data.essay_about_you,
+          essay_why_a2sv: data.essay_why_a2sv,
+        })
+      );
 
       const applicationData = {
         ...essayInfo,
@@ -73,7 +81,7 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
 
       const res = await sendApplicantData(applicationData);
       if (!res.success) {
-        setErrorMessage(res.message || 'Submission failed. Please try again.');
+        setErrorMessage(res.message || "Submission failed. Please try again.");
         return;
       }
 
@@ -81,8 +89,8 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
       reset(); // Reset form
       if (onNext) onNext();
     } catch (error) {
-      setErrorMessage('An unexpected error occurred. Please try again.');
-      console.error('Submission error:', error);
+      setErrorMessage("An unexpected error occurred. Please try again.");
+      console.error("Submission error:", error);
     }
   };
 
@@ -92,7 +100,7 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
       {errorMessage && (
         <div className="text-red-600 mb-2">
           {errorMessage}
-          {errorMessage.includes('already submitted') && (
+          {errorMessage.includes("already submitted") && (
             <p>
               <a href="/view-application" className="text-blue-500 underline">
                 View your existing application
@@ -102,38 +110,43 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
         </div>
       )}
       <form noValidate>
-        <div className="flex flex-column flex-wrap gap-10">
-          <div>
-            <label htmlFor="essay_about_you" className="block">Tell us about yourself.</label>
+        <div className="flex flex-col flex-wrap " style={{color:'#374151'}}>
+          <div className="w-full">
+            <label htmlFor="essay_about_you" className="block">
+              Tell us about yourself.
+            </label>
             <textarea
-              {...register('essay_about_you', {
-                required: { value: true, message: 'Message required' },
+              {...register("essay_about_you", {
+                required: { value: true, message: "Message required" },
               })}
-              className="border-b mb-2 border-gray-300 focus:outline-none focus:border-b-2 focus:border-blue-500"
+              className="border-b mb-2 w-full border-gray-300 focus:outline-none focus:border-b-2 focus:border-blue-500"
               id="essay_about_you"
               disabled={isSubmitting}
             />
             <p className="text-red-600">{errors.essay_about_you?.message}</p>
           </div>
-          <div>
-            <label htmlFor="essay_why_a2sv" className="block">Why do you want to join us?</label>
+          <div >
+            <label htmlFor="essay_why_a2sv" className="block">
+              Why do you want to join us?
+            </label>
             <textarea
-              {...register('essay_why_a2sv', {
-                required: { value: true, message: 'This field is required' },
+              {...register("essay_why_a2sv", {
+                required: { value: true, message: "This field is required" },
               })}
-              className="border-b mb-2 border-gray-300 focus:outline-none focus:border-b-2 focus:border-blue-500"
+              className="border-b w-full mb-2 border-gray-300 focus:outline-none focus:border-b-2 focus:border-blue-500"
               id="essay_why_a2sv"
               disabled={isSubmitting}
             />
             <p className="text-red-600">{errors.essay_why_a2sv?.message}</p>
           </div>
         </div>
-        <div>
+        <div >
           <input
-            className="bg-blue-600 w-20 text-white rounded-md p-2"
+            style={{ background: "#4f46e5" }}
+            className=" w-28 text-white rounded-md p-2"
             type="file"
-            {...register('resume', {
-              required: { value: true, message: 'Resume is required' },
+            {...register("resume", {
+              required: { value: true, message: "Resume is required" },
             })}
             onChange={handleFileChange}
             id="resume"
@@ -146,6 +159,6 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
   );
 });
 
-EssayProfile.displayName = 'EssayProfile';
+EssayProfile.displayName = "EssayProfile";
 
 export default EssayProfile;

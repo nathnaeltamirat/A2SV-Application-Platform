@@ -67,7 +67,7 @@ useImperativeHandle(ref, () => ({
     <div className="width-[740] p-3">
       <h2 className='text-md my-2 font-semibold '>Coding Profiles</h2>
       <form noValidate>
-        <div className="flex  justify-between flex-wrap gap-10">
+        <div className="flex  justify-between flex-wrap gap-10" style={{color:'#374151'}}>
 
           <div>
             <label htmlFor="education" className="block ">Codeforces</label>

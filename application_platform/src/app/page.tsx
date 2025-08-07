@@ -3,11 +3,13 @@ import EssayResume from "@/components/application-submission/EssayResume";
 import PersonalInfo from "@/components/application-submission/PersonalInfo";
 import ApplyPage from "./apply/page";
 import AdminPage from "./admin/page";
+import UserPage from "./user/page";
+import DashboardHeader from "@/components/header/Header";
 
 export default function Home() {
   return (
     <div >
-      <ApplyPage/>
+       <ApplyPage/>
     </div>
   );
 }

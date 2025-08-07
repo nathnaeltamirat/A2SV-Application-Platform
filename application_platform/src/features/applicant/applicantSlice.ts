@@ -15,6 +15,7 @@ const initialState: applicationState = {
   codeforces_handle: "",
   essay_why_a2sv: "",
   essay_about_you: "",
+  country: ""
 };
 
 const applicantSlice = createSlice({
@@ -27,10 +28,11 @@ const applicantSlice = createSlice({
       state.codeforces_handle = codeforces_handle;
     },
     set_personal_info: (state, action: PayloadAction<personalInfo>) => {
-      const { degree, school,student_id } = action.payload;
+      const { degree, school,student_id,country } = action.payload;
       state.degree = degree;
       state.school = school;
       state.student_id=student_id;
+      state.country=country;
     },
     set_essay_resumes: (state, action: PayloadAction<essayResume>) => {
       const { essay_why_a2sv, essay_about_you,  } = action.payload;

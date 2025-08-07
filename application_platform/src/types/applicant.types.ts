@@ -7,6 +7,7 @@ export interface applicationState {
   essay_why_a2sv: string;
   essay_about_you: string;
   student_id:string;
+  country:string;
 }
 
 export interface codingProfile {
@@ -18,6 +19,7 @@ export interface personalInfo {
   school: string;
   degree: string;
   student_id:string;
+  country:string;
 }
 
 export interface essayResume {
