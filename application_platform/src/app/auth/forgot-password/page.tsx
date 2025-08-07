@@ -45,7 +45,7 @@ export default function ForgotPasswordPage() {
           <div className="text-center mb-6">
             <div className="flex justify-center mb-4">
               <img
-                src="https://via.placeholder.com/120x40?text=A2SV"
+                src= "/A2SV.png"
                 alt="A2SV logo"
                 width={120}
                 height={40}

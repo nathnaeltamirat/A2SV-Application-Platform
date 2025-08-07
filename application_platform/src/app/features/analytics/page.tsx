@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
-import  HorizontalBarChart from '../../components/chartComponents/HorizontalBarChart'
-import  PieChart from '../../components/chartComponents/PieChart'
-import  BarChart from '../../components/chartComponents/BarChart'
+import  HorizontalBarChart from '../../../components/chartComponents/HorizontalBarChart'
+import  PieChart from '../../../components/chartComponents/PieChart'
+import  BarChart from '../../../components/chartComponents/BarChart'
 
 const Analytics = () => {
     const chartData = {
