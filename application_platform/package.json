@@ -9,22 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@heroicons/react": "^2.2.0",
-    "@reduxjs/toolkit": "^2.8.2",
-    "date-fns": "^4.1.0",
     "next": "15.4.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "react-hook-form": "^7.62.0",
-    "react-redux": "^9.2.0"
-=======
-    "chart.js": "^4.5.0",
-    "next": "15.4.5",
-    "react": "19.1.0",
-    "react-chartjs-2": "^5.3.0",
-    "react-dom": "19.1.0"
->>>>>>> 6954a0edf887ca04e1233bd5362195b627eee0d6
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
