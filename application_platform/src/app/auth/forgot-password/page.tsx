@@ -25,10 +25,7 @@ export default function ForgotPasswordPage() {
 
     setIsLoading(true);
     try {
-      // Placeholder: in real flow you'd call the forgot-password endpoint here
-      // await fetch('/api/forgot-password', ...)
-
-      // Simulate success and navigate to reset page with email as query param
+      
       router.push(`/auth/reset?email=${encodeURIComponent(email)}`);
     } catch (err) {
       console.error('Forgot password error:', err);
