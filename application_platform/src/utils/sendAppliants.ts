@@ -2,7 +2,7 @@ import { applicationState } from "@/types/applicant.types";
 import { getResumeFile } from "@/utils/fileStore";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ZjlhYmUzNC1iZmM4LTRiNzMtOTEyYi0zOTZkMzAxN2IwMzQiLCJleHAiOjE3NTQ0NzkwMDksInR5cGUiOiJhY2Nlc3MifQ.ep_JaypnQznFnoE9PVukzY9AFYMqgDfz6xR_GNqCZ9M";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZmRmMjExNi0yOGRhLTQ0ODgtODY5MS02ZmMwM2RkMTg5ZGYiLCJleHAiOjE3NTQ1NTQ5OTIsInR5cGUiOiJhY2Nlc3MifQ.-ggHZdbyLpSqysCLiczUwADUFVwSEZeED2oFLu6E2qU";
 
 const sendApplicantData = async (applicationInfo: applicationState) => {
   const formData = new FormData();

@@ -1,38 +1,34 @@
 "use client";
 
 import Application from "@/components/user/application";
-import {
-  ArrowRightIcon,
-  CheckCircleIcon,
-  CheckIcon,
-} from "@heroicons/react/24/outline";
+import NoApplication from "@/components/user/noApplication";
+import { applicationSubmitted } from "@/utils/applicationSubmitted";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const UserPage = () => {
-  //   const [name, setName] = useState<string>("");
-  //   const [numberOfCycles, setNumberOfCycles] = useState<number>(0);
-  //   const [numberApplicants, setNumberOfApplicants] = useState<number>(0);
-  //   const [recentCycle, setRecentCycle] = useState<Recent | null>(null);
-  //   useEffect(() => {
-  //     const numberRes = async () => {
-  //       const numberOfUsers: number = await numberUsers();
-  //       const numberOfCycles: number = await numberCycle();
-  //       const numberOfApplications: number = await numberOfApplicants();
-  //       const recentCycleNameTime = await recent();
-  //       setNumberOfUsers(numberOfUsers);
-  //       setNumberOfCycles(numberOfCycles);
-  //       setNumberOfApplicants(numberOfApplications);
-  //       setRecentCycle({
-  //         name: recentCycleNameTime[0],
-  //         ago: recentCycleNameTime[1],
-  //       });
-  //     };
-  //     numberRes();
-  //   }, []);
+    const [inProgress,setInProgress] = useState<boolean>(false)
+    const [dateAndTime,setDateAndTime] = useState<string | null>('')
+    useEffect(()=>{
+        const getDate = async ()=>{
+            const data = await applicationSubmitted();
+            console.log(data)
+            if(data){
+                setInProgress(true);
+            }
+            setDateAndTime(data)
 
+        }
+        getDate()
+    },[])
   return (
     <div className="bg-gray-100 w-full  min-w-full h-screen">
-        <Application/>
+        {
+         inProgress?<Application dateAndTime = {dateAndTime}/>
+         :<NoApplication/>
+        }
+ 
     </div>
   );
 };

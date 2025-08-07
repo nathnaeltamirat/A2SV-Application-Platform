@@ -1,3 +1,4 @@
+import { DateAndTimes } from "@/types/dateAndTime";
 import {
   ArrowPathRoundedSquareIcon,
   ArrowRightIcon,
@@ -7,9 +8,7 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Application = () => {
-
-    const [applicationSubmitted,setApplicationSubmitted] = useState<string>('');
+const Application = ({dateAndTime}:DateAndTimes) => {
   return (
     <div className="w-[70%]  mx-auto py-5 mb-2 ">
       <h1 className="font-bold text-xl ">Your Application Progress</h1>
@@ -29,7 +28,7 @@ const Application = () => {
             </div>
             <div>
               <h2 className="font-bold">Application Submitted</h2>
-              <p className="text-sm font-extralight">{applicationSubmitted}</p>
+              <p className="text-sm font-extralight">{dateAndTime}</p>
               <p className="text-sm font-extralight">
                 Your application has been successfully submitted. Were excited
                 to learn more about you!
@@ -75,7 +74,7 @@ const Application = () => {
               <CheckCircleIcon className="w-6 h-6 text-green-600 " />
               <div className="flex flex-col">
                 <p className="font-light">Application Submitted</p>
-                <p className="text-sm font-extralight">{applicationSubmitted}</p>
+                <p className="text-sm font-extralight">{dateAndTime}</p>
               </div>
             </div>
             <div className="flex gap-1">
