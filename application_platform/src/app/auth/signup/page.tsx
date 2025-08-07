@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 
+
 export default function SignupPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -98,7 +99,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex flex-row items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="bg-white py-10 px-8 shadow-lg rounded-xl">
           <div className="text-center mb-6">
@@ -203,6 +204,7 @@ export default function SignupPage() {
           </form>
         </div>
       </div>
+     
     </div>
   );
 
