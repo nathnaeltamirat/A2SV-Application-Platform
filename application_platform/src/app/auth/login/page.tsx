@@ -1,29 +1,40 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { loggedInformation } from "@/utils/login";
+// import { useDispatch } from "react-redux"; // Uncomment if using Redux
+// import { setUser } from "@/features/auth/authSlice"; // Adjust path as needed
 
 export default function LoginPage() {
+  const router = useRouter();
+  // const dispatch = useDispatch(); // Uncomment if using Redux
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
+
+  const ADMIN_EMAIL = "admin@a2sv.org";
+  const ADMIN_PASSWORD = "securepassword";
+
+  const [validationErrors, setValidationErrors] = useState<{
+    [key: string]: string;
+  }>({});
 
   const validateForm = () => {
     const errors: { [key: string]: string } = {};
 
     if (!formData.email.trim()) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Please enter a valid email address';
+      errors.email = "Please enter a valid email address";
     }
 
     if (!formData.password) {
-      errors.password = 'Password is required';
+      errors.password = "Password is required";
     }
 
     setValidationErrors(errors);
@@ -32,78 +43,70 @@ export default function LoginPage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     if (validationErrors[name]) {
-      setValidationErrors(prev => ({
+      setValidationErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (!validateForm()) return;
 
     setIsLoading(true);
+    const { email, password } = formData;
+
     try {
-      const response = await fetch(
-        'https://a2sv-application-platform-backend-team9.onrender.com/auth/token',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password
+      // Admin login
+      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+        localStorage.setItem("role", "admin");
+        localStorage.setItem("adminLoggedIn", "true");
+
+        // Optional Redux usage
+        /*
+        dispatch(
+          setUser({
+            id: "admin-001",
+            name: "Admin",
+            role: "admin",
           })
-        }
-      );
-      const responseData = await response.json();
-      if (response.ok) {
-        localStorage.setItem('accessToken', responseData.data.access);
-        localStorage.setItem('refreshToken', responseData.data.refresh);
-        localStorage.setItem('role', responseData.data.role);
-        alert('Login successful!');
-       
-        window.location.href = '/';
-      } else {
-        setError(responseData.detail || 'Login failed. Please check your credentials.');
+        );
+        */
+
+        router.replace("/admin");
+        return;
       }
+
+      // Student login
+      const responseData = await loggedInformation(formData);
+      const token = responseData.data.accessToken;
+      const role = responseData.data.role;
+
+      if (token) {
+        localStorage.setItem("accessToken", token);
+      }
+
+      if (role) {
+        localStorage.setItem("role", role);
+      }
+
+      router.replace("/redirect");
     } catch (err) {
-      console.error('Login error:', err);
-      setError('Network error. Please check your connection and try again.');
+      console.error("Login error:", err);
+      setError("Login failed. Please check your credentials and try again.");
     } finally {
       setIsLoading(false);
     }
   };
-//   const fetchApplicantProfile = async (accessToken: String) => {
-//   try {
-//     const response = await fetch('https://a2sv-application-platform-backend-team9.onrender.com/applicants/me', {
-//       method: 'GET',
-//       headers: {
-//         'Authorization': `Bearer ${accessToken}`,
-//       },
-//     });
-
-//     const profileData = await response.json();
-
-//     if (response.ok) {
-      
-//       localStorage.setItem('applicantProfile', JSON.stringify(profileData));
-//       console.log('Profile data:', profileData);
-//     } else {
-//       console.error('Failed to fetch profile:', profileData.message);
-//     }
-//   } catch (error) {
-//     console.error('Error fetching profile:', error);
-//   }
-// };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -111,17 +114,20 @@ export default function LoginPage() {
         <div className="bg-white py-10 px-8 shadow-lg rounded-xl">
           <div className="text-center mb-6">
             <div className="flex justify-center mb-4">
-              
               <img
-                src= "/A2SV.png"
+                src="/A2SV.png"
                 alt="A2SV logo"
                 width={120}
                 height={40}
                 className="object-contain"
               />
             </div>
-            <h1 className="text-2xl font-semibold text-gray-900">Welcome Back</h1>
-            <p className="text-sm mt-1 text-gray-600">Sign in to your A2SV account</p>
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Welcome Back
+            </h1>
+            <p className="text-sm mt-1 text-gray-600">
+              Sign in to your A2SV account
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -134,11 +140,13 @@ export default function LoginPage() {
                 onChange={handleInputChange}
                 placeholder="Email address"
                 className={`appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm ${
-                  validationErrors.email ? 'border-red-300' : 'border-gray-300'
+                  validationErrors.email ? "border-red-300" : "border-gray-300"
                 }`}
               />
               {validationErrors.email && (
-                <p className="text-xs text-red-600 mt-1">{validationErrors.email}</p>
+                <p className="text-xs text-red-600 mt-1">
+                  {validationErrors.email}
+                </p>
               )}
             </div>
 
@@ -151,11 +159,15 @@ export default function LoginPage() {
                 onChange={handleInputChange}
                 placeholder="Password"
                 className={`appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm ${
-                  validationErrors.password ? 'border-red-300' : 'border-gray-300'
+                  validationErrors.password
+                    ? "border-red-300"
+                    : "border-gray-300"
                 }`}
               />
               {validationErrors.password && (
-                <p className="text-xs text-red-600 mt-1">{validationErrors.password}</p>
+                <p className="text-xs text-red-600 mt-1">
+                  {validationErrors.password}
+                </p>
               )}
             </div>
 
@@ -170,18 +182,21 @@ export default function LoginPage() {
               disabled={isLoading}
               className={`w-full py-3 rounded-md text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm ${
                 isLoading
-                  ? 'bg-indigo-300 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-700'
+                  ? "bg-indigo-300 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700"
               }`}
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? "Signing in..." : "Sign in"}
             </button>
           </form>
 
           <div className="mt-6 text-center space-y-2">
             <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link href="/auth/signup" className="font-medium text-indigo-600 hover:underline">
+              Don't have an account?{" "}
+              <Link
+                href="/auth/signup"
+                className="font-medium text-indigo-600 hover:underline"
+              >
                 Sign up
               </Link>
             </p>
