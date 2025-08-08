@@ -20,35 +20,26 @@ export default function ReviewerDashboard() {
   const router = useRouter();
   const limit = 6;
 
-  useEffect(() => {
-        setLoading(true);
-        setError(null);
-      try{
-        const getApplication = async ()=>{
-                  const data = await fetchApplications();
-                  if(data == null){
-                  
-                    router.push('/auth/login')
-                    return
-                  }
-           setApplications(data.data.reviews || []);
-        setTotalCount(data.data.total_count || 0);
-
-
-        }
-        getApplication();
-
-
-      } catch (error) {
-        console.error("Error fetching applications:", error);
-        setError("Failed to load applications. Please try again.");
-      } finally {
-        setLoading(false);
-      }
+useEffect(() => {
+  const getApplication = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchApplications();
+      if (data == null) return;
+      setApplications(data.data.reviews || []);
+      setTotalCount(data.data.total_count || 0);
+    } catch (error) {
+      console.error("Error fetching applications:", error);
+      setError("Failed to load applications. Please try again.");
+    } finally {
+      setLoading(false);
     }
+  };
 
-    fetchApplications()
-  }, [currentPage, activeFilter, router]);
+  getApplication();
+}, [currentPage, activeFilter]);
+
 
   const getStatusClasses = (status: string) => {
     switch (status) {
@@ -73,7 +64,7 @@ export default function ReviewerDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navigation Bar */}
+
       <nav className="bg-white shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
