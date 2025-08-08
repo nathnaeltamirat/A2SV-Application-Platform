@@ -13,12 +13,19 @@
     "next": "15.4.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+<<<<<<< Updated upstream
     "react-hook-form": "^7.62.0",
+=======
+>>>>>>> Stashed changes
     "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+<<<<<<< Updated upstream
+=======
+    "@types/next": "^8.0.7",
+>>>>>>> Stashed changes
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

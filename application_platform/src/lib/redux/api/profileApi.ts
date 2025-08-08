@@ -6,7 +6,7 @@ export const profileApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://a2sv-application-platform-backend-team9.onrender.com',
     prepareHeaders: (headers) => {
-  const devToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4MjJiMWMzMS01ODA4LTQyMTktYWU4My1jM2ZmNWIzNWZjZTQiLCJleHAiOjE3NTQ0NjQyODcsInR5cGUiOiJhY2Nlc3MifQ.TtRd43lkxDM5Ll2x7qU2V9OBeeN3aOCvp_4fFm15fBs'
+  const devToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0YTk0NjMwNC05ZjYxLTQyNzQtODgyZS1lMGQ2Y2Q5NDAxM2QiLCJleHAiOjE3NTQ2NTE3MzIsInR5cGUiOiJhY2Nlc3MifQ.ovvkVl0TDBRGnYbp1GPZWSmmPLNKvc6f91bwoEPWkTc'
 
   headers.set('Authorization', `Bearer ${devToken}`);
   return headers;
@@ -20,7 +20,7 @@ export const profileApi = createApi({
     updateProfile: builder.mutation({
       query: (data) => ({
         url: '/profile/me',
-        method: 'POST',
+        method: 'PUT',
         body: data,
       }),
     }),
