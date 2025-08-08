@@ -8,15 +8,15 @@ import {
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Application = ({dateAndTime}:DateAndTimes) => {
+const Application = ({ dateAndTime }: DateAndTimes) => {
   return (
     <div className="w-[70%]  mx-auto py-5 mb-2 ">
       <h1 className="font-bold text-xl ">Your Application Progress</h1>
       <p className="text-sm font-extralight">
         Youre on your way! Heres a summary of your application status.
       </p>
-      <div className="flex gap-2 my-4">
-        <div className="w-[60%]  mr-2 p-5 pb-8 rounded-md bg-white">
+      <div className="grid grid-cols-3 my-4">
+        <div className="col-span-3 md:col-span-2  mr-2 p-5 pb-8 rounded-md bg-white">
           <h1 className="text-lg font-bold ">Application Timeline</h1>
           <p className="mb-5">
             It is time to submit your application and show us your potential.
@@ -67,7 +67,7 @@ const Application = ({dateAndTime}:DateAndTimes) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-[35%]">
+        <div className="flex flex-col col-span-3 md:col-span-1">
           <div className=" bg-white   mr-2 my-2  p-4 rounded-md">
             <h1 className="font-bold my-2">Recent Activity</h1>
             <div className="flex gap-1 my-2">
