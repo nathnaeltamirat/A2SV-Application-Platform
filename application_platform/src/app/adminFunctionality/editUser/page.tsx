@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { updateUserAPI } from '../../../utils/adminFunctions/updateUserAPI'
+import AdminHeader from '@/components/header/adminHeader'
 
 
 const USER_ID = '223277f0-af11-44c5-843e-23afcb194ea8'
@@ -16,6 +17,9 @@ const EditUser = () => {
             }
   
   return (
+    <>
+    
+    <AdminHeader/>
     <div className='min-h-screen pl-[250px] pr-[40px] pt-[50px] pb-[60px]' style={{ background: 'rgb(243, 244, 246)' }}>
       <div className='text-black mb-8'>
         <h1 className='text-3xl font-bold mb-1'>Edit User</h1>
@@ -94,6 +98,7 @@ const EditUser = () => {
         </div>
       </form>
     </div>
+    </>
   )
 }
 

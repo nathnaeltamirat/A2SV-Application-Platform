@@ -1,39 +1,46 @@
-// admin_user_form.html
-// admin_user_form_edit.html
+//admin_cycles.html
+// admin_dashboard.html
+// admin_users.html
+// analytics_dashboard.html
 import React from "react";
 import Link from "next/link";
-
-const Admin = () => {
+const AnalyticsHeader = () => {
   return (
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+         <img src="/Images/a2sv.png" className="w-20" />
         <div className="flex items-center space-x-8">
-        <img src="Images/a2sv.png" className="w-20" />
           <nav className="hidden md:flex space-x-6">
             <Link
               href="/dashboard"
+              className="text-gray-600 hover:text-indigo-600 "
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/adminFunctionality/createNewUser"
               className="text-gray-600 hover:text-indigo-600"
             >
-              Applications
-            </Link>
-            <Link href="/users" className="text-gray-600 hover:text-indigo-600">
               Users
             </Link>
             <Link
-              href="/cycles"
+              href="/adminFunctionality/createNewCycle"
               className=" text-gray-600 hover:text-indigo-600"
             >
               Cycles
             </Link>
             <Link
-              href="/analytics"
-              className="text-gray-600 hover:text-indigo-600"
+              href="/features/analytics"
+              className="text-gray-600 hover:text-indigo-600 underline"
             >
               Analytics
             </Link>
           </nav>
         </div>
         <div className="relative flex items-center space-x-4">
+          <Link className="text-sm  text-indigo-600" href="admin/Profile">
+            Your Profile
+          </Link>
           <Link className="text-sm " href="admin/Admin User">
             Admin User
           </Link>
@@ -59,4 +66,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default AnalyticsHeader;

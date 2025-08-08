@@ -8,29 +8,44 @@ const AdminHeader = () => {
   return (
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <img src="Component 1.png" />
+        <img src="/Images/a2sv.png" className="w-20" />
         <div className="flex items-center space-x-8">
           <nav className="hidden md:flex space-x-6">
             <Link
               href="/dashboard"
-              className="text-gray-600 hover:text-indigo-600"
+              className="text-gray-600 hover:text-indigo-600 underline"
             >
               Dashboard
             </Link>
-            <Link href="/users" className="text-gray-600 hover:text-indigo-600">
+            <Link
+              href="/adminFunctionality/createNewUser"
+              className="text-gray-600 hover:text-indigo-600"
+            >
               Users
             </Link>
             <Link
-              href="/cycles"
+              href="/adminFunctionality/createNewCycle"
               className=" text-gray-600 hover:text-indigo-600"
             >
               Cycles
             </Link>
             <Link
-              href="/analytics"
+              href="/features/analytics"
               className="text-gray-600 hover:text-indigo-600"
             >
               Analytics
+            </Link>
+                  <Link
+              href="/adminFunctionality/editUser"
+              className="text-gray-600 hover:text-indigo-600"
+            >
+              Edit User
+            </Link>
+                            <Link
+              href="/adminFunctionality/createNewUser"
+              className="text-gray-600 hover:text-indigo-600"
+            >
+              Add User
             </Link>
           </nav>
         </div>
@@ -54,9 +69,9 @@ const AdminHeader = () => {
                   d="M19 9l-7 7-7-7"
                 />
               </svg> */}
-          <button className="text-gray-600 hover:text-indigo-600">
+          <Link href='/auth/login' className="text-gray-600 hover:text-indigo-600">
             Logout
-          </button>
+          </Link>
         </div>
       </div>
     </header>

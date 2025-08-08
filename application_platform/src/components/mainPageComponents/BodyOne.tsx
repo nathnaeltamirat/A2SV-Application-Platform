@@ -31,7 +31,7 @@ const BodyOne = () => {
         </p>
         <div className="mt-8">
           {/* <Link href = '/adminFunctionality/createNewUser'><StartApplication/></Link> */}
-          <Link href = '/auth/signup'><StartApplication/></Link>
+          <Link href = '/'><StartApplication/></Link>
         </div>
         </div>
       </div>

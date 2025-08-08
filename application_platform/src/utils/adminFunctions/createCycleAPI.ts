@@ -43,8 +43,7 @@ export const createCycleAPI = async (
     console.log('Server response:', data)
 
     if (response.ok && data.success) {
-      alert("Cycle created successfully!")
-      window.location.reload()
+      
     } else {
       alert(data.message || "Failed to create cycle")
     }

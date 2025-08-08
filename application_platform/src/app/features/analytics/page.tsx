@@ -3,6 +3,7 @@ import React from 'react'
 import  HorizontalBarChart from '../../../components/chartComponents/HorizontalBarChart'
 import  PieChart from '../../../components/chartComponents/PieChart'
 import  BarChart from '../../../components/chartComponents/BarChart'
+import AnalyticsHeader from '@/components/header/AnalyticsHeader'
 
 const Analytics = () => {
     const chartData = {
@@ -21,7 +22,9 @@ const Analytics = () => {
 
     
   return (
-    <div className='h-auto text-black pl-[150px] pt-[50px]' style={{background : 'rgb(243, 244, 246)'}}>
+    <>
+    <AnalyticsHeader/>
+    <div className='h-auto text-black pl-[150px] pt-[50px] py-10 pr-8' style={{background : 'rgb(243, 244, 246)'}}>
         <div className='flex flex-col space-x-3'>
             <div className='font-medium text-3xl'>Application Analytics</div>
             <div className='font-light text-gray-500 text-[16px]'>Insights for the G7 November Intake</div>
@@ -70,6 +73,7 @@ const Analytics = () => {
         </div>
       
     </div>
+    </>
   )
 }
 

@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { RootState } from "@/store/store";
 import { essayResume } from "@/types/applicant.types";
 import { useForm } from "react-hook-form";
@@ -26,6 +26,7 @@ export interface EssayHandle {
 
 const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const essayInfo = useSelector((state: RootState) => state.applicant);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -84,7 +85,7 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
         setErrorMessage(res.message || "Submission failed. Please try again.");
         return;
       }
-
+      router.push("/user/confirmation"); 
       setResumeFile(null); // Clear file after successful submission
       reset(); // Reset form
       if (onNext) onNext();

@@ -1,8 +1,8 @@
 import React from "react";
 import { formatDistanceToNow } from "date-fns";
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNWI2Yjk1NS1iYjY5LTRhNGItYmE5Ny1kYWFlNzJiNTQ4YzAiLCJleHAiOjE3NTQ0NzI0NjQsInR5cGUiOiJhY2Nlc3MifQ.rYyMIRFgyi772Cq0Ds1Lnp5JJDOK1r0eGurGmIL36Lg";
+const token = localStorage.getItem('accessToken')
 export const numberUsers = async () => {
-  console.log("token", token);
+  
   const options = {
     headers: {
       Authorization: `Bearer ${token}`,

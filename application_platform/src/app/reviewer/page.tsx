@@ -10,7 +10,7 @@ type Application = {
   submission_date: string;
 };
 
-export default function Dashboard() {
+export default function ReviewerDashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -21,57 +21,33 @@ export default function Dashboard() {
   const limit = 6;
 
   useEffect(() => {
-    const fetchApplications = async () => {
-      try {
         setLoading(true);
         setError(null);
-
-        const token =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MWU4YzM3Mi1jNDcwLTRhMGEtODhkNC1hNmMyY2EzN2NkODYiLCJleHAiOjE3NTQ1NTQ2NDQsInR5cGUiOiJhY2Nlc3MifQ.BYY-hAcxuRrGvT7l8jaEnXXKJVqnexp80NjBVrQ389o";
-
-        if (!token) {
-          router.push("/login");
-          return;
-        }
-
-        const response = await fetch(
-          `https://a2sv-application-platform-backend-team9.onrender.com/reviews/assigned`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        console.log("API Response:", response);
-
-        if (!response.ok) {
-          if (response.status === 401) {
-            localStorage.removeItem("token");
-            router.push("/login");
-            return;
-          }
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("API Data:", data);
-
-        if (!data.data) {
-          throw new Error("Invalid API response structure");
-        }
-
-        setApplications(data.data.reviews || []);
+      try{
+        const getApplication = async ()=>{
+                  const data = await fetchApplications();
+                  if(data == null){
+                  
+                    router.push('/auth/login')
+                    return
+                  }
+           setApplications(data.data.reviews || []);
         setTotalCount(data.data.total_count || 0);
+
+
+        }
+        getApplication();
+
+
       } catch (error) {
         console.error("Error fetching applications:", error);
         setError("Failed to load applications. Please try again.");
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchApplications();
+    fetchApplications()
   }, [currentPage, activeFilter, router]);
 
   const getStatusClasses = (status: string) => {

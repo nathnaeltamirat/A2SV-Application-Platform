@@ -1,10 +1,15 @@
 import { applicationState } from "@/types/applicant.types";
 import { getResumeFile } from "@/utils/fileStore";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZmRmMjExNi0yOGRhLTQ0ODgtODY5MS02ZmMwM2RkMTg5ZGYiLCJleHAiOjE3NTQ1NTQ5OTIsInR5cGUiOiJhY2Nlc3MifQ.-ggHZdbyLpSqysCLiczUwADUFVwSEZeED2oFLu6E2qU";
+import { useRouter } from "next/navigation";
 
 const sendApplicantData = async (applicationInfo: applicationState) => {
+  const token = localStorage.getItem("accessToken"); 
+
+  if (!token) {
+    console.error("No access token found");
+    return { success: false, message: "Not authenticated" };
+  }
+
   const formData = new FormData();
 
   formData.append("codeforces_handle", applicationInfo.codeforces_handle || "");
@@ -15,6 +20,7 @@ const sendApplicantData = async (applicationInfo: applicationState) => {
   formData.append("school", applicationInfo.school || "");
   formData.append("student_id", applicationInfo.student_id || "");
   formData.append("country", applicationInfo.country || "");
+
   const resumeFile = getResumeFile();
   if (resumeFile) {
     formData.append("resume", resumeFile);
@@ -34,6 +40,7 @@ const sendApplicantData = async (applicationInfo: applicationState) => {
 
     const result = await res.json();
     console.log("Backend response:", result);
+    // router.push("/user/confirmation");
     return result;
   } catch (error) {
     console.error("Error submitting applicant data:", error);

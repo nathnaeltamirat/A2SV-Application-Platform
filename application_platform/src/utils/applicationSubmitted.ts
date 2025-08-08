@@ -1,8 +1,7 @@
 import { format } from "date-fns";
 
 export const applicationSubmitted = async () => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZmRmMjExNi0yOGRhLTQ0ODgtODY5MS02ZmMwM2RkMTg5ZGYiLCJleHAiOjE3NTQ1NzA3NjQsInR5cGUiOiJhY2Nlc3MifQ.VdksIJ3qV2-FsGZx0Y08ecNqa7JO9rD0dqgiFlu48aY";
+  const token = localStorage.getItem('accessToken')
   const options = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -13,14 +12,10 @@ export const applicationSubmitted = async () => {
     options
   );
   const data = await res.json();
-  console.log("data", data);
   if (data.message == "No application found.") {
     return null;
   }
-  console.log("data", data);
   const dateString = data.data.submitted_at;
-
-  console.log("date and time ", dateString);
   const monthMap = {
     "01": "January",
     "02": "February",

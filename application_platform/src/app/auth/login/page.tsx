@@ -1,29 +1,40 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { loggedInformation } from "@/utils/login";
+import LogInHeader from "@/components/header/login";
+import Footer from "@/components/footer/Footer";
 
 export default function LoginPage() {
+  useEffect(() => {
+
+    localStorage.clear();
+  }, []);
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
+
+  const [validationErrors, setValidationErrors] = useState<{
+    [key: string]: string;
+  }>({});
 
   const validateForm = () => {
     const errors: { [key: string]: string } = {};
 
     if (!formData.email.trim()) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = 'Please enter a valid email address';
+      errors.email = "Please enter a valid email address";
     }
 
     if (!formData.password) {
-      errors.password = 'Password is required';
+      errors.password = "Password is required";
     }
 
     setValidationErrors(errors);
@@ -32,72 +43,62 @@ export default function LoginPage() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
 
     if (validationErrors[name]) {
-      setValidationErrors(prev => ({
+      setValidationErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     if (!validateForm()) return;
 
     setIsLoading(true);
+
     try {
-      const response = await fetch(
-        'https://a2sv-application-platform-backend-team9.onrender.com/auth/token',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: formData.email,
-            password: formData.password
-          })
-        }
-      );
-      const responseData = await response.json();
-      if (response.ok) {
-        localStorage.setItem('accessToken', responseData.access);
-        localStorage.setItem('refreshToken', responseData.refresh);
-        alert('Login successful!');
-        window.location.href = '/';
-      } else {
-        setError(responseData.detail || 'Login failed. Please check your credentials.');
-      }
+      const res =  await loggedInformation(formData);
+      console.log(res)
+      console.log(localStorage)
+      router.push("/dashboard");
     } catch (err) {
-      console.error('Login error:', err);
-      setError('Network error. Please check your connection and try again.');
+      console.error("Login error:", err);
+      setError("Login failed. Please check your credentials and try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
+    <>
+    <LogInHeader/>
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="bg-white py-10 px-8 shadow-lg rounded-xl">
           <div className="text-center mb-6">
             <div className="flex justify-center mb-4">
-              
               <img
-                src= "/A2SV.png"
+                src="/A2SV.png"
                 alt="A2SV logo"
                 width={120}
                 height={40}
                 className="object-contain"
               />
             </div>
-            <h1 className="text-2xl font-semibold text-gray-900">Welcome Back</h1>
-            <p className="text-sm mt-1 text-gray-600">Sign in to your A2SV account</p>
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Welcome Back
+            </h1>
+            <p className="text-sm mt-1 text-gray-600">
+              Sign in to your A2SV account
+            </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -110,11 +111,13 @@ export default function LoginPage() {
                 onChange={handleInputChange}
                 placeholder="Email address"
                 className={`appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm ${
-                  validationErrors.email ? 'border-red-300' : 'border-gray-300'
+                  validationErrors.email ? "border-red-300" : "border-gray-300"
                 }`}
               />
               {validationErrors.email && (
-                <p className="text-xs text-red-600 mt-1">{validationErrors.email}</p>
+                <p className="text-xs text-red-600 mt-1">
+                  {validationErrors.email}
+                </p>
               )}
             </div>
 
@@ -127,11 +130,15 @@ export default function LoginPage() {
                 onChange={handleInputChange}
                 placeholder="Password"
                 className={`appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm ${
-                  validationErrors.password ? 'border-red-300' : 'border-gray-300'
+                  validationErrors.password
+                    ? "border-red-300"
+                    : "border-gray-300"
                 }`}
               />
               {validationErrors.password && (
-                <p className="text-xs text-red-600 mt-1">{validationErrors.password}</p>
+                <p className="text-xs text-red-600 mt-1">
+                  {validationErrors.password}
+                </p>
               )}
             </div>
 
@@ -146,18 +153,21 @@ export default function LoginPage() {
               disabled={isLoading}
               className={`w-full py-3 rounded-md text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm ${
                 isLoading
-                  ? 'bg-indigo-300 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-700'
+                  ? "bg-indigo-300 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700"
               }`}
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ? "Signing in..." : "Sign in"}
             </button>
           </form>
 
           <div className="mt-6 text-center space-y-2">
             <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link href="/auth/signup" className="font-medium text-indigo-600 hover:underline">
+              Don't have an account?{" "}
+              <Link
+                href="/auth/signup"
+                className="font-medium text-indigo-600 hover:underline"
+              >
                 Sign up
               </Link>
             </p>
@@ -173,5 +183,7 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
