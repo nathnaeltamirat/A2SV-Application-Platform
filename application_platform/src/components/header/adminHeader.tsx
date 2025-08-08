@@ -18,7 +18,7 @@ const AdminHeader = () => {
               Dashboard
             </Link>
             <Link
-              href="/adminFunctionality/createNewUser"
+              href="/adminFunctionality/user"
               className="text-gray-600 hover:text-indigo-600"
             >
               Users
@@ -35,22 +35,11 @@ const AdminHeader = () => {
             >
               Analytics
             </Link>
-                  <Link
-              href="/adminFunctionality/editUser"
-              className="text-gray-600 hover:text-indigo-600"
-            >
-              Edit User
-            </Link>
-                            <Link
-              href="/adminFunctionality/createNewUser"
-              className="text-gray-600 hover:text-indigo-600"
-            >
-              Add User
-            </Link>
+
           </nav>
         </div>
         <div className="relative flex items-center space-x-4">
-          <Link className="text-sm  text-indigo-600" href="admin/Profile">
+          <Link className="text-sm  text-indigo-600" href="Profile">
             Your Profile
           </Link>
           <Link className="text-sm " href="admin/Admin User">

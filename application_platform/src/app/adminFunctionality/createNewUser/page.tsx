@@ -4,12 +4,15 @@ import { createNewUserAPI } from "../../../utils/adminFunctions/createNewUserAPI
 import AdminHeader from "@/components/header/adminHeader";
 import { useRouter } from "next/navigation";
 
+
+
 const CreateNewUser = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const router = useRouter();
+
   const handleSubmit = async (e: React.FormEvent) => {
     await createNewUserAPI(e, name, email, password, role);
         router.push('/dashboard')
@@ -17,7 +20,6 @@ const CreateNewUser = () => {
   return (
     <>
       <AdminHeader />
-
       <div
         className="min-h-screen pl-[250px] pr-[40px] pt-[50px] pb-[60px]"
         style={{ background: "rgb(243, 244, 246)" }}

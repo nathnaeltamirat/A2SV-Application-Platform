@@ -6,7 +6,7 @@ const ManagersHeader = () => {
   return (
     <header className="bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-around items-center">
-          <img src="/Images/a2sv.png" className="w-20" />
+        <img src="/Images/a2sv.png" className="w-20" />
         <div className="flex items-center space-x-8">
           <nav className="hidden md:flex space-x-6">
             <Link
@@ -38,7 +38,7 @@ const ManagersHeader = () => {
                 />
               </svg> */}
           <button className="text-gray-600 hover:text-indigo-600">
-            Logout
+            <Link href='/auth/login'>Logout</Link>
           </button>
         </div>
       </div>

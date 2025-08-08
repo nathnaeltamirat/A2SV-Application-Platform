@@ -34,7 +34,7 @@ const Admin = () => {
           </nav>
         </div>
         <div className="relative flex items-center space-x-4">
-          <Link className="text-sm " href="admin/Admin User">
+          <Link className="text-sm " href=" User">
             Admin User
           </Link>
           {/* <svg

@@ -1,41 +1,35 @@
+'use client'
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo , useEffect , useState} from "react";
+import {
+  Application,
+  fetchApplicationById,
+} from "../../utils/managerFunctions/fetchApplicationById";
+import { useSearchParams } from "next/navigation";
 
-export type Application = {
-  id: string;
-  applicantName: string;
-  school: string;
-  degree: string;
-  github: string;
-  leetcode: string;
-  codeforces: string;
-  essay1: string;
-  essay2: string;
-  resumeUrl: string;
-  assignedReviewer?: string;
-  activityCheck?: string;
-  resumeScore?: number;
-  essayScore?: number;
-  techInterview?: number;
-  behavioral?: number;
-  interviewerNotes?: string;
-};
+
 
 export default function ManageApplicant() {
-  const router = useRouter();
-  const { application } = router.query;
-  
-  const app = useMemo(() => {
-    try {
-      return application ? JSON.parse(application as string) : null;
-    } catch (e) {
-      return null;
-    }
-  }, [application]);
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+  const [app, setApp] = useState<Application | null>(null);
+
+  useEffect(() => {
+    const loadApp = async () => {
+      if (!id) return;
+
+      const fetchedApp = await fetchApplicationById(id);
+      if (fetchedApp) {
+        setApp(fetchedApp);
+      }
+    };
+
+    loadApp();
+  }, [id]);
 
   if (!app) {
-    return <div>Loading...</div>;
+    return <div className="p-6 text-gray-600">Loading application...</div>;
   }
 
 

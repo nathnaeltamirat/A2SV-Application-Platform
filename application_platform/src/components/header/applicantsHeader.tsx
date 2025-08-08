@@ -20,7 +20,7 @@ const ApplicantsHeader = ({applicant_name}:applicantName) => {
           </nav>
         </div>
         <div className="relative flex items-center space-x-4">
-          <Link className="text-sm  text-indigo-600" href="admin/Profile">
+          <Link className="text-sm  text-indigo-600" href="profile">
             Your Profile
           </Link>
           <Link className="text-sm " href="admin/Admin User">

@@ -3,11 +3,11 @@ export const updateUserAPI = async (
     e: React.FormEvent,
     name: string,
     email: string,
-    role: string
-
+    role: string,
+    USER_ID: string
     ) => {
         e.preventDefault()
-    const USER_ID = '223277f0-af11-44c5-843e-23afcb194ea8'
+ 
     let token = localStorage.getItem('accessToken')
 
     const updatePayload = {
