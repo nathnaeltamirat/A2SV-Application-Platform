@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createCycleAPI } from "@/api/admin/createCycleAPI";
 
-
 const CreateNewCycle = () => {
   const router = useRouter();
   const [cyclename, setCycleName] = useState("");
@@ -12,12 +11,11 @@ const CreateNewCycle = () => {
   const [end, setEnd] = useState("");
   const handleSubmit = async (e: React.FormEvent) => {
     await createCycleAPI(e, cyclename, start, end);
-    router.push('/admin/cycles')
+    router.push("/admin/cycles");
   };
 
   return (
     <>
-
       <div
         className="min-h-screen pl-[250px] pr-[40px] pt-[50px] pb-[60px]"
         style={{ background: "rgb(243, 244, 246)" }}
@@ -91,7 +89,7 @@ const CreateNewCycle = () => {
           <div className="flex justify-end space-x-4">
             <button
               type="button"
-              className="px-6 py-2 text-black border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+              className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
             >
               Cancel
             </button>

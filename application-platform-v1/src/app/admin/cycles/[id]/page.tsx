@@ -198,7 +198,7 @@ export default function CycleByIDPage() {
         </div>
       </div>
 
-      <Footer2 />
+      {/* <Footer2 /> */}
     </div>
   );
 }
