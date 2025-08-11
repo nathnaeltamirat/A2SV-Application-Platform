@@ -112,17 +112,23 @@ export default function ManagerDashboard() {
                 <option value="in_progress">Under Review</option>
                 <option value="accepted">Accepted</option>
                 <option value="rejected">Rejected</option>
-                    <option value="pending_review">Pending Review</option>
+                <option value="pending_review">Pending Review</option>
               </select>
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-sm border-separate border-spacing-y-4">
                 <thead>
                   <tr className="border-b my-4 text-gray-500">
-                    <th className="text-left">Applicant</th>
-                    <th className="text-left">Assigned Reviewer</th>
-                    <th className="text-left">Status</th>
+                    <th className="text-left text-lg text-gray-700 font-bold">
+                      Applicant
+                    </th>
+                    <th className="text-left text-lg text-gray-700 font-bold">
+                      Assigned Reviewer
+                    </th>
+                    <th className="text-left text-lg text-gray-700 font-bold">
+                      Status
+                    </th>
                     {/*       <th className="py-2">Actions</th>*/}
                   </tr>
                 </thead>
@@ -130,7 +136,7 @@ export default function ManagerDashboard() {
                   {applications.map((app) => (
                     <tr
                       key={app.id}
-                      className="border-b last:border-0 cursor-pointer hover:bg-gray-50"
+                      className="border-b border-b-gray-200 last:border-0 cursor-pointer h-20 text-lg hover:bg-gray-50"
                       onClick={() => handleRowClick(app)}
                       role="link"
                       tabIndex={0}
@@ -140,17 +146,23 @@ export default function ManagerDashboard() {
                         }
                       }}
                     >
-                      <td className="font-medium whitespace-normal break-words">
+                      <td className="font-bold whitespace-normal break-words">
                         {app.applicant_name || "Unknown"}
                       </td>
                       <td className="py-2">
-                        <span className="bg-gray-100 text-gray-500 px-2 py-1 rounded">
+                        <span
+                          className={`bg-gray-100 ${
+                            app.assigned_reviewer_name
+                              ? "text-green-500"
+                              : "text-red-700"
+                          }  px-2 py-1 rounded`}
+                        >
                           {app.assigned_reviewer_name || "Not Assigned"}
                         </span>
                       </td>
                       <td className="py-2 ">
                         <span
-                          className={`px-2 py-1 rounded text-xs font-medium ${
+                          className={`px-2 py-1 rounded text-sm font-medium ${
                             app.status === "New"
                               ? "bg-blue-100 text-blue-700"
                               : app.status === "rejected"
@@ -205,7 +217,12 @@ export default function ManagerDashboard() {
           <div className="bg-white p-6 rounded-lg shadow h-50 w-full sm:w-1/3 lg:w-1/4">
             <h2 className="font-bold text-lg mb-4">Team Performance</h2>
             {performers.map((p, i) => (
-              <div key={i} className={i !== 0 ? "pt-4 border-t" : ""}>
+              <div
+                key={i}
+                className={
+                  i !== 0 ? "pt-4 border-t border-t-gray-300 my-2" : ""
+                }
+              >
                 <div className="flex justify-between items-center font-medium">
                   <span>{p.name}</span>
                   <span className="text-sm text-gray-600">
