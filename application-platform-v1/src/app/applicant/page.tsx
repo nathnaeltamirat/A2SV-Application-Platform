@@ -1,0 +1,39 @@
+"use client";
+
+
+import { applicationSubmitted } from "@/api/applicant/applicationSubmitted";
+import ApplicantsHeader from "@/components/applicant/applicantsHeader";
+import Application from "@/components/applicant/application";
+import NoApplication from "@/components/applicant/noApplication";
+import Footer2 from "@/components/footer/Footer2";
+import { useEffect, useState } from "react";
+
+const UserPage = () => {
+  const [inProgress, setInProgress] = useState<boolean>(false);
+  const [dateAndTime, setDateAndTime] = useState<string | null>("");
+  const full_name = localStorage.getItem("full_name")
+  useEffect(() => {
+    const getDate = async () => {
+      const data = await applicationSubmitted();
+      if (data) {
+        setInProgress(true);
+        setDateAndTime(data);
+      }
+    };
+    getDate();
+  }, []);
+
+  return (
+    <div className="bg-gray-100 min-h-screen mb-2 w-full">
+      <ApplicantsHeader applicant_name={full_name}/>
+      {inProgress ? (
+        <Application dateAndTime={dateAndTime} />
+      ) : (
+        <NoApplication />
+      )}
+      <Footer2/>
+    </div>
+  );
+};
+
+export default UserPage;
