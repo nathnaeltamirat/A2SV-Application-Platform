@@ -128,16 +128,16 @@ export default function CycleByIDPage() {
   }
 
   return (
-    <div className="bg-blue-50 text-black flex flex-col min-h-screen">
+    <div className="bg-blue-10 text-black flex flex-col min-h-screen">
       <div className="flex-grow p-6 max-w-2xl mx-auto bg-white shadow-lg rounded-lg border border-blue-100 mt-6">
-        <h1 className="text-3xl font-bold text-blue-500 mb-6">
+        <h1 className="text-3xl font-bold text-black-500 mb-6">
           Manage Cycle Details
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Cycle Name */}
           <div>
-            <label className="block text-sm font-semibold text-blue-400 mb-2">
+            <label className="block text-sm font-semibold text-black-400 mb-2">
               Cycle Name
             </label>
             <input
@@ -151,7 +151,7 @@ export default function CycleByIDPage() {
 
           {/* Start Date */}
           <div>
-            <label className="block text-sm font-semibold text-blue-400 mb-2">
+            <label className="block text-sm font-semibold text-black-400 mb-2">
               Start Date
             </label>
             <input
@@ -164,7 +164,7 @@ export default function CycleByIDPage() {
 
           {/* End Date */}
           <div>
-            <label className="block text-sm font-semibold text-blue-400 mb-2">
+            <label className="block text-sm font-semibold text-black-400 mb-2">
               End Date
             </label>
             <input
@@ -177,7 +177,7 @@ export default function CycleByIDPage() {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-semibold text-blue-400 mb-2">
+            <label className="block text-sm font-semibold text-black-400 mb-2">
               Description
             </label>
             <textarea
