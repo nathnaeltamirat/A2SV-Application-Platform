@@ -1,3 +1,5 @@
+import { FetchWithAuth } from "../fetchWithAuth";
+
 export type Application = {
   id: string;
   applicantName: string;
@@ -24,7 +26,7 @@ export const fetchApplicationById = async (
   const token = localStorage.getItem("accessToken"); // or get it however your app handles auth
 
   try {
-    const res = await fetch(
+    const res = await FetchWithAuth(
       `https://a2sv-application-platform-backend-team9.onrender.com/manager/applications/${id}`,
       {
         headers: {

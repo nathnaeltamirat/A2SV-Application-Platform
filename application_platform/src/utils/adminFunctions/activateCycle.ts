@@ -1,6 +1,8 @@
+import { FetchWithAuth } from "../fetchWithAuth"
+
 const activateCycle = async (cycleId: number, token: string) => {
     try {
-      const response = await fetch(`https://a2sv-application-platform-backend-team9.onrender.com/admin/cycles/${cycleId}/activate`, {
+      const response = await FetchWithAuth(`https://a2sv-application-platform-backend-team9.onrender.com/admin/cycles/${cycleId}/activate`, {
         method: 'PATCH',
         headers: {
           Authorization: `Bearer ${token}`,

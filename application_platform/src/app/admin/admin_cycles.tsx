@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import CycleCard from "./CycleCard";
+import { FetchWithAuth } from "@/utils/fetchWithAuth";
 
 export type Cycle = {
   id: number;
@@ -76,7 +77,7 @@ export default function CyclesPage() {
 
   useEffect(() => {
     async function fetchCycles() {
-      const res = await fetch(
+      const res = await FetchWithAuth(
         `https://a2sv-application-platform-backend-team9.onrender.com/cycles/?page=${currentPage}&limit=${limit}`,
         { cache: "no-store" }
       );

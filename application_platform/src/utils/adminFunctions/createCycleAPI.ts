@@ -1,3 +1,5 @@
+import { FetchWithAuth } from "../fetchWithAuth"
+
 export const createCycleAPI = async (
   e: React.FormEvent,
   cyclename: string,
@@ -8,7 +10,7 @@ export const createCycleAPI = async (
   try {
     let token = localStorage.getItem('accessToken')
 
-    let response = await fetch('https://a2sv-application-platform-backend-team9.onrender.com/admin/cycles', {
+    let response = await FetchWithAuth('https://a2sv-application-platform-backend-team9.onrender.com/admin/cycles', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +27,7 @@ export const createCycleAPI = async (
       console.log("Access token expired, refreshing...")
       token = await refreshAccessToken()
 
-      response = await fetch('https://a2sv-application-platform-backend-team9.onrender.com/admin/cycles', {
+      response = await FetchWithAuth('https://a2sv-application-platform-backend-team9.onrender.com/admin/cycles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

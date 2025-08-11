@@ -1,3 +1,5 @@
+import { FetchWithAuth } from "../fetchWithAuth";
+
 export type Application = {
   id: string;
   status: string;
@@ -9,7 +11,7 @@ export const fetchApplications = async (): Promise<Application[]> => {
   const token = localStorage.getItem("accessToken");
 
   try {
-    const res = await fetch(
+    const res = await FetchWithAuth(
       "https://a2sv-application-platform-backend-team9.onrender.com/manager/applications",
       {
         method: "GET",

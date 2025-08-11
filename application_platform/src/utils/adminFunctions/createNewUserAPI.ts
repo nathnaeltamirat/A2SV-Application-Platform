@@ -1,3 +1,5 @@
+import { FetchWithAuth } from "../fetchWithAuth";
+
 // import { refreshAccessToken } from '../refreshToken';
 export const createNewUserAPI = async (
   e: React.FormEvent,
@@ -13,7 +15,7 @@ export const createNewUserAPI = async (
     let token = localStorage.getItem("accessToken");
     
     console.log(`email: ${email}`)
-    let response = await fetch(
+    let response = await FetchWithAuth(
       "https://a2sv-application-platform-backend-team9.onrender.com/admin/users",
       {
         method: "POST",
@@ -34,7 +36,7 @@ export const createNewUserAPI = async (
       console.log("Access token expired, refreshing...");
       token = await refreshAccessToken();
 
-      response = await fetch(
+      response = await FetchWithAuth(
         "https://a2sv-application-platform-backend-team9.onrender.com/admin/users",
         {
           method: "POST",

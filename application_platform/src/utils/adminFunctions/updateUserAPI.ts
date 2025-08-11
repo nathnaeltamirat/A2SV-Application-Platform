@@ -1,3 +1,4 @@
+import { FetchWithAuth } from "../fetchWithAuth"
 
 export const updateUserAPI = async (
     e: React.FormEvent,
@@ -16,7 +17,7 @@ export const updateUserAPI = async (
       role,
     }
 
-    let res = await fetch(`https://a2sv-application-platform-backend-team9.onrender.com/admin/users/${USER_ID}`, {
+    let res = await FetchWithAuth(`https://a2sv-application-platform-backend-team9.onrender.com/admin/users/${USER_ID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
