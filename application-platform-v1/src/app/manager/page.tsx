@@ -197,7 +197,7 @@ export default function ManagerDashboard() {
                 <button
                   disabled={page === 1}
                   onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                  className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+                  className="px-4 py-2 w-24 rounded bg-blue-800 disabled:bg-blue-300 "
                 >
                   Previous
                 </button>
@@ -206,7 +206,8 @@ export default function ManagerDashboard() {
 
                 <button
                   onClick={() => setPage((prev) => prev + 1)}
-                  className="px-4 py-2 bg-gray-200 rounded"
+                  className="px-4 py-2 w-24 rounded bg-blue-800 disabled:bg-blue-300 "
+                  disabled={statusCounts.total <= page * limit}
                 >
                   Next
                 </button>
