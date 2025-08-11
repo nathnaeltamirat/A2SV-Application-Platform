@@ -13,7 +13,7 @@ import {
 } from "@/api/admin/adminDashboard";
 import { Recent } from "@/types/admin.type";
 import AdminHeader from "@/components/admin/adminHeader";
-import Footer2 from "@/components/footer/Footer2";
+
 const AdminPage = () => {
   const [numberOfUsers, setNumberOfUsers] = useState<number>(0);
   const [numberOfCycles, setNumberOfCycles] = useState<number>(0);
@@ -118,7 +118,7 @@ const AdminPage = () => {
           </div>
         </div>
       </div>
-      <Footer2/>
+      
     </>
   );
 };

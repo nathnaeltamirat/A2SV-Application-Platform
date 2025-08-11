@@ -1,5 +1,5 @@
 import AdminHeader from "@/components/admin/adminHeader";
-import Footer2 from "@/components/footer/Footer2";
+
 
 export default function AnalyticsLayout({
   children,
@@ -13,7 +13,7 @@ export default function AnalyticsLayout({
         {children}
         
       </div>
-      <Footer2/>
+      
     </>
   );
 }

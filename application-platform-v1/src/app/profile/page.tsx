@@ -2,7 +2,7 @@
 "use client";
 
 import AdminHeader from "@/components/admin/adminHeader";
-import Footer2 from "@/components/footer/Footer2";
+
 import ChangePasswordForm from "@/components/profile/ChangePasswordForm";
 import PersonalInfoForm from "@/components/profile/PersonalInfoForm";
 import ProfileHeader from "@/components/profile/ProfileHeader";
@@ -45,7 +45,7 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <Footer2 />
+      
     </>
   );
 }

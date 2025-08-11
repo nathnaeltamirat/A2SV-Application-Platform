@@ -1,5 +1,6 @@
 import AdminHeader from "@/components/admin/adminHeader";
-import Footer2 from "@/components/footer/Footer2";
+
+
 
 export default function CycleLayout({
   children,
@@ -13,7 +14,7 @@ export default function CycleLayout({
         {children}
         
       </div>
-      <Footer2/>
+      
     </>
   );
 }

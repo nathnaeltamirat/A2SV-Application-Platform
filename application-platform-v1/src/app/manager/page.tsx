@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { ApplicationItem, ApplicationResponse } from "@/types/manager.type";
 import { fetchApplications } from "@/api/manager/fetchTotalApplication";
 import ManagersHeader from "@/components/manager/managerHeader";
-import Footer from "@/components/footer/Footer";
+
 
 const performers = [
   {
@@ -221,7 +221,6 @@ export default function ManagerDashboard() {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 }

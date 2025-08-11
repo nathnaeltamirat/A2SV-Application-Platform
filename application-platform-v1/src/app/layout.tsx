@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import ReduxProvider from "@/providers/reduxProvider";
+import Footer from "@/components/footer/Footer";
 
 
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body>
         <ReduxProvider>
         {children}
+        <Footer />
         </ReduxProvider>
   
       </body>

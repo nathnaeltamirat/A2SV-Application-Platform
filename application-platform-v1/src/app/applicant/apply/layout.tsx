@@ -1,6 +1,6 @@
 
 import ApplicantsHeader from "@/components/applicant/applicantsHeader";
-import Footer2 from "@/components/footer/Footer2";
+
 
 export default function UserLayout({
   children,
@@ -14,7 +14,7 @@ export default function UserLayout({
    
         {children}
       </div>
-      <Footer2 />
+      
     </>
   );
 }

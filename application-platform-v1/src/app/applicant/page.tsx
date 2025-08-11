@@ -5,7 +5,7 @@ import { applicationSubmitted } from "@/api/applicant/applicationSubmitted";
 import ApplicantsHeader from "@/components/applicant/applicantsHeader";
 import Application from "@/components/applicant/application";
 import NoApplication from "@/components/applicant/noApplication";
-import Footer2 from "@/components/footer/Footer2";
+
 import { useEffect, useState } from "react";
 
 const UserPage = () => {
@@ -31,7 +31,7 @@ const UserPage = () => {
       ) : (
         <NoApplication />
       )}
-      <Footer2/>
+      
     </div>
   );
 };
