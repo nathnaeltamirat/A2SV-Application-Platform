@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { Application } from "@/types/reviwer.type";
 import ReviwerHeader from "@/components/reviewer/ReviwerHeader";
-import Footer2 from "@/components/footer/Footer2";
+import Footer from "@/components/footer/Footer";
 import { fetchAssignedApplications } from "@/api/reviwer/fetchApplication";
 
 export default function ReviewerDashboard() {
@@ -216,7 +216,7 @@ export default function ReviewerDashboard() {
           </>
         )}
       </div>
-      <Footer2/>
+      <Footer/>
     </div>
   );
 }

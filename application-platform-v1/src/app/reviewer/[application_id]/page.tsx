@@ -1,7 +1,7 @@
 "use client";
 import { fetchReviwedData } from "@/api/reviwer/fetchReviwedData";
 import { updateReviewData } from "@/api/reviwer/updateReviweData";
-import Footer2 from "@/components/footer/Footer2";
+import Footer from "@/components/footer/Footer";
 import ReviwerHeader from "@/components/reviewer/ReviwerHeader";
 import {
   ApplicantDetails,
@@ -354,7 +354,7 @@ export default function ReviewPage() {
           </div>
         </div>
       </div>
-      <Footer2 />
+      <Footer />
     </div>
   );
 }

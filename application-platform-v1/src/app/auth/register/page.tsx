@@ -98,7 +98,12 @@ export default function SignupPage() {
           <div className="bg-white py-10 px-8 shadow-lg rounded-xl">
             <div className="text-center mb-6">
               <div className="flex justify-center mb-4">
-                <img src="/Images/a2sv.png" alt="A2SV logo" width={120} height={40} />
+                <img
+                  src="/Images/a2sv.png"
+                  alt="A2SV logo"
+                  width={120}
+                  height={40}
+                />
               </div>
               <h1 className="text-2xl font-semibold text-gray-900">
                 Create a new applicant account
@@ -164,6 +169,7 @@ export default function SignupPage() {
                   type="password"
                   value={formData.password}
                   onChange={handleInputChange}
+                  autoComplete="off"
                   placeholder="Password"
                   className={` text-black appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm ${
                     validationErrors.password
@@ -220,7 +226,7 @@ export default function SignupPage() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

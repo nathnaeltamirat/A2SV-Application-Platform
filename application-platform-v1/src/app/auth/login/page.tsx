@@ -127,6 +127,7 @@ export default function LoginPage() {
                   id="password"
                   name="password"
                   type="password"
+                  autoComplete="off"
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="Password"
