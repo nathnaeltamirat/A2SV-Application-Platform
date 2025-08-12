@@ -12,7 +12,7 @@ const NoApplication = () => {
         Your journey to a global tech career starts now.
       </p>
       <div className="grid grid-cols-3 gap-6 my-4">
-        <div className="h-40 mr-2 p-5 text-white pb-8 rounded-md col-span-3 md:col-span-2 bg-gradient-to-r from-violet-900 via-purple-800 to-purple-900">
+        <div className="h-45 mr-2 p-5 text-white pb-8 rounded-md col-span-3 md:col-span-2 bg-gradient-to-r from-violet-900 via-purple-800 to-purple-900">
           <h1 className="text-xl font-bold ">G7 November Intake</h1>
           <p className="mb-5">
             It is time to submit your application and show us your potential.
