@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { forgotPassword } from "@/app/api/auth/forgot-password/forgotPassword";
 import Footer from "@/components/footer/Footer";
+import AuthHeader from "@/components/auth/authHeader";
 
 export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +37,8 @@ export default function ForgotPasswordPage() {
   };
 
   return (
+    <>
+    <AuthHeader login={false}/>
     <div className="bg-100">
       <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
@@ -68,7 +71,7 @@ export default function ForgotPasswordPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
-                  className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm border-gray-300"
+                  className="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm border-gray-300 text-black"
                   aria-label="Email address"
                 />
               </div>
@@ -112,5 +115,6 @@ export default function ForgotPasswordPage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }
