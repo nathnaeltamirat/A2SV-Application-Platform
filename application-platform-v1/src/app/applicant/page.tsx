@@ -17,6 +17,8 @@ const UserPage = () => {
       if (data) {
         setInProgress(true);
         setDateAndTime(data);
+      }else{
+        setInProgress(false)
       }
     };
     getDate();
