@@ -1,7 +1,7 @@
 export const forgotPassword = async (email: string) => {
   const payload = {
     email: email,
-    callback_url: "http://localhost:3000/auth/reset-password",
+    callback_url: "https://a2-sv-application-platform-dflwwl6r2-nathnaeltamirats-projects.vercel.app/auth/reset-password",
   };
   const options = {
     body: JSON.stringify(payload),
