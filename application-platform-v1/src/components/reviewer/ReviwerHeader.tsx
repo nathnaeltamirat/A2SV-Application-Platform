@@ -8,7 +8,7 @@ const ReviwerHeader = () => {
     typeof window !== "undefined" ? localStorage.getItem("full_name") : "";
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200">
+    <nav className="bg-white shadow-sm border-b text-black border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <div className="flex items-center">
@@ -87,15 +87,13 @@ const ReviwerHeader = () => {
               Dashboard
             </Link>
             <Link
-              href="#"
+              href="/profile"
               className="text-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Your Profile
             </Link>
-            <span className="text-gray-500 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium">
-              {full_name}
-            </span>
+
             <Link
               href="/auth/login"
               className="text-gray-500 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium"

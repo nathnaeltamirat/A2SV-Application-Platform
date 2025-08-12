@@ -90,18 +90,12 @@ const ApplicantsHeader = ({ applicant_name }: applicantName) => {
           </Link>
           <Link
             className="text-gray-600 hover:text-indigo-600 transition"
-            href="profile"
+            href="/profile"
             onClick={() => setIsMenuOpen(false)}
           >
             Your Profile
           </Link>
-          <Link
-            className="text-gray-600 hover:text-indigo-600 transition"
-            href="admin/Admin User"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {applicant_name}
-          </Link>
+
           <Link
             href="/auth/login"
             className="text-gray-600 hover:text-indigo-600 transition"

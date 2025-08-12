@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Cycle } from "@/types/admin.type";
-import { fetchCycles } from "@/api/admin/fetchCycle";
+import { fetchCycles } from "@/app/api/admin/fetchCycle";
 import CycleCard from "@/components/admin/CycleCard";
 import { useRouter } from "next/navigation";
 import Footer from "@/components/footer/Footer";

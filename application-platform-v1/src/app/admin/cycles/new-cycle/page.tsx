@@ -1,186 +1,110 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createCycleAPI } from "@/app/api/admin/createCycleAPI";
 import Link from "next/link";
-import { AdminHeaderActive } from "@/types/admin.type";
 
-const AdminHeader = ({ active }: AdminHeaderActive) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const full_name = localStorage.getItem("full_name");
+const CreateNewCycle = () => {
+  const router = useRouter();
+  const [cyclename, setCycleName] = useState("");
+  const [start, setStart] = useState("");
+  const [country, setCountry] = useState("");
+  const [end, setEnd] = useState("");
+  const handleSubmit = async (e: React.FormEvent) => {
+    await createCycleAPI(e, cyclename, start, end);
+    router.push("/admin/cycles");
+  };
 
   return (
-    <header className="bg-white shadow-sm">
-      
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center justify-between space-x-50 ">
-          <img src="/Images/a2sv.png" className="w-20" />
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              color="black"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+    <>
+      <div
+        className="min-h-screen pl-[40px] md:pl-[250px] pr-[40px] pt-[50px] pb-[60px]"
+        style={{ background: "rgb(243, 244, 246)" }}
+      >
+        <div className="text-black mb-8">
+          <h1 className="text-3xl font-bold mb-1">Create New Cycle</h1>
+          <p className="text-gray-600">
+            Use this form to create a new cycle and assign periods.
+          </p>
         </div>
 
-        {active && (
-          <div className="flex items-center space-x-12">
-            <nav className="hidden md:flex space-x-6">
-              <Link
-                href="/dashboard"
-                className={
-                  active == "dashboard"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/admin/users"
-                className={
-                  active == "users"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-              >
-                Users
-              </Link>
-              <Link
-                href="/admin/cycles"
-                className={
-                  active == "cycles"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-              >
-                Cycles
-              </Link>
-              <Link
-                href="/admin/analytics"
-                className={
-                  active == "analytics"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-              >
-                Analytics
-              </Link>
-            </nav>
-          </div>
-        )}
-
-        <div className="hidden md:flex items-center space-x-4">
-          <Link className="text-sm text-indigo-600" href="Profile">
-            Your Profile
-          </Link>
-          <Link className="text-sm text-black" href="">
-            {full_name}
-          </Link>
-          <Link
-            href="/auth/login"
-            className="text-gray-600 hover:text-indigo-600"
-          >
-            Logout
-          </Link>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white px-4 py-2 border-t">
-          {active && (
-            <div className="flex flex-col space-y-3 py-2">
-              <Link
-                href="/dashboard"
-                className={
-                  active == "dashboard"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/admin/users"
-                className={
-                  active == "users"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Users
-              </Link>
-              <Link
-                href="/admin/cycles"
-                className={
-                  active == "cycles"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Cycles
-              </Link>
-              <Link
-                href="/admin/analytics"
-                className={
-                  active == "analytics"
-                    ? "text-gray-600 hover:text-indigo-600 underline"
-                    : "text-gray-600 hover:text-indigo-600 "
-                }
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Analytics
-              </Link>
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-xl shadow-2xl p-8 max-w-5xl"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Cycle Name
+              </label>
+              <input
+                type="text"
+                value={cyclename}
+                onChange={(e) => setCycleName(e.target.value)}
+                className="w-full text-black  border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Enter cycle name"
+                required
+              />
             </div>
-          )}
-          <div className="flex flex-col space-y-3 py-2 border-t">
-            <Link
-              className="text-sm text-indigo-600"
-              href="Profile"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Your Profile
-            </Link>
-
-            <Link
-              href="/auth/login"
-              className="text-gray-600 hover:text-indigo-600"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Logout
-            </Link>
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Country
+              </label>
+              <input
+                type="text"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="w-full text-black border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Enter country"
+              />
+            </div>
           </div>
-        </div>
-      )}
-    </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Start Date
+              </label>
+              <input
+                type="date"
+                value={start}
+                onChange={(e) => setStart(e.target.value)}
+                className="w-full text-black border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                End Date
+              </label>
+              <input
+                type="date"
+                value={end}
+                onChange={(e) => setEnd(e.target.value)}
+                className="w-full text-black border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="flex justify-end space-x-4">
+            <Link href="/admin"
+              type="button"
+              className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+            >
+              Cancel
+            </Link>
+            <button
+              type="submit"
+              className="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"
+            >
+              Save Cycle
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
-export default AdminHeader;
+export default CreateNewCycle;

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { ApplicationItem, ApplicationResponse } from "@/types/manager.type";
-import { fetchApplications } from "@/api/manager/fetchTotalApplication";
+import { fetchApplications } from "@/app/api/manager/fetchTotalApplication";
 import ManagersHeader from "@/components/manager/managerHeader";
 import Footer from "@/components/footer/Footer";
 

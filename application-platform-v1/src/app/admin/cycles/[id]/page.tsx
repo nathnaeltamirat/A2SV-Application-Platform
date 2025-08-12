@@ -1,9 +1,9 @@
 "use client";
-import { activateCycle } from "@/api/admin/activateCycle";
-import { deActivateCycle } from "@/api/admin/deActivateCycle";
-import { deleteCycle } from "@/api/admin/deleteCycle";
-import { getCycleById } from "@/api/admin/getCycleId";
-import { updateCycle } from "@/api/admin/updateCycle";
+import { activateCycle } from "@/app/api/admin/activateCycle";
+import { deActivateCycle } from "@/app/api/admin/deActivateCycle";
+import { deleteCycle } from "@/app/api/admin/deleteCycle";
+import { getCycleById } from "@/app/api/admin/getCycleId";
+import { updateCycle } from "@/app/api/admin/updateCycle";
 import Footer from "@/components/footer/Footer";
 
 import { CycleData } from "@/types/admin.type";
@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 
 export default function CycleByIDPage() {
   const params = useParams();
+
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -26,9 +27,11 @@ export default function CycleByIDPage() {
   });
 
   useEffect(() => {
+    if (!params?.id || !router) return;
     const fetchData = async () => {
       try {
         setLoading(true);
+        if (!params) return;
         const id = params.id;
         if (typeof id != "string") return;
         const res = await getCycleById(id);
@@ -42,7 +45,7 @@ export default function CycleByIDPage() {
       }
     };
     fetchData();
-  }, [params.id, router]);
+  }, [params?.id, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -201,7 +204,6 @@ export default function CycleByIDPage() {
           </button>
         </form>
 
-        
         <div className="flex gap-4 mt-6">
           <button
             className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-3 rounded-md shadow transition duration-200"
@@ -210,7 +212,6 @@ export default function CycleByIDPage() {
             Delete
           </button>
 
-          
           {cycle.is_active ? (
             <button
               className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-3 rounded-md shadow transition duration-200"

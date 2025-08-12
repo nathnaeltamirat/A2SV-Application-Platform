@@ -1,6 +1,6 @@
 "use client";
-import { getUserById } from "@/api/admin/getUserById";
-import { updateUserAPI } from "@/api/admin/updateUserAPI";
+import { getUserById } from "@/app/api/admin/getUserById";
+import { updateUserAPI } from "@/app/api/admin/updateUserAPI";
 import { USERID } from "@/types/admin.type";
 
 import { useRouter } from "next/navigation";
@@ -97,7 +97,6 @@ const EditUser = ({ USER_ID }: USERID) => {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2  text-black focus:ring-indigo-500"
               placeholder="Set new password (not required)"
-              
             />
           </div>
         </div>

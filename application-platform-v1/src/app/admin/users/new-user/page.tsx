@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { createNewUserAPI } from "@/api/admin/createNewUserAPI";
-
-
+import { createNewUserAPI } from "@/app/api/admin/createNewUserAPI";
+import Link from "next/link";
 
 const CreateNewUser = () => {
   const [name, setName] = useState("");
@@ -14,12 +13,12 @@ const CreateNewUser = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     await createNewUserAPI(e, name, email, password, role);
-        router.push('/dashboard')
+    router.push("/dashboard");
   };
   return (
     <>
       <div
-        className="min-h-screen pl-[250px] pr-[40px] pt-[50px] pb-[60px]"
+        className="min-h-screen pl-[40px] md:pl-[250px] pr-[40px] pt-[50px] pb-[60px]"
         style={{ background: "rgb(243, 244, 246)" }}
       >
         <div className="text-black mb-8">
@@ -93,12 +92,13 @@ const CreateNewUser = () => {
           </div>
 
           <div className="flex justify-end space-x-4">
-            <button
+            <Link
+            href="/admin"
               type="button"
               className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
             >
               Cancel
-            </button>
+            </Link>
             <button
               type="submit"
               className="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"

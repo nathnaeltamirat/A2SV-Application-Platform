@@ -13,7 +13,7 @@ const BodyTwo = () => {
 
       <div className='pt-14 flex flex-col md:flex-row md:space-x-5 space-y-8 md:space-y-0 items-center'>
         <div className='flex flex-row space-x-4 max-w-[300px]'>
-          <img src='/images/download.svg' alt='Phase 1 Icon' className='w-10 h-10' />
+          <img src='/Images/download.svg' alt='Phase 1 Icon' className='w-10 h-10' />
           <div>
             <div className='font-bold'>Phase 1: Foundations</div>
             <div className='text-gray-500 pt-3 text-sm'>
@@ -25,7 +25,7 @@ const BodyTwo = () => {
 
         
         <div className='flex flex-row space-x-4 max-w-[300px]'>
-          <img src='/images/download2.svg' alt='Phase 2 Icon' className='w-10 h-10' />
+          <img src='/Images/download2.svg' alt='Phase 2 Icon' className='w-10 h-10' />
           <div>
             <div className='font-bold'>Phase 2: Real-World Projects</div>
             <div className='text-gray-500 pt-3 text-sm'>
@@ -37,7 +37,7 @@ const BodyTwo = () => {
 
         
         <div className='flex flex-row space-x-4 max-w-[300px]'>
-          <img src='/images/download3.svg' alt='Phase 3 Icon' className='w-10 h-10' />
+          <img src='/Images/download3.svg' alt='Phase 3 Icon' className='w-10 h-10' />
           <div>
             <div className='font-bold'>Phase 3: Internship Placement</div>
             <div className='text-gray-500 pt-3 text-sm'>
@@ -48,7 +48,7 @@ const BodyTwo = () => {
         </div>
 
         <div className='flex flex-row space-x-4 max-w-[300px]'>
-          <img src='/images/download5.svg' alt='Phase 4 Icon' className='w-10 h-10' />
+          <img src='/Images/download5.svg' alt='Phase 4 Icon' className='w-10 h-10' />
           <div>
             <div className='font-bold'>Phase 4: Full-time Conversion</div>
             <div className='text-gray-500 pt-3 text-sm'>

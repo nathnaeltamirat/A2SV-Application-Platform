@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Application } from "@/types/reviwer.type";
 import ReviwerHeader from "@/components/reviewer/ReviwerHeader";
 import Footer from "@/components/footer/Footer";
-import { fetchAssignedApplications } from "@/api/reviwer/fetchApplication";
+import { fetchAssignedApplications } from "@/app/api/reviwer/fetchApplication";
 
 export default function ReviewerDashboard() {
   const [applications, setApplications] = useState<Application[]>([]);
@@ -50,7 +50,6 @@ export default function ReviewerDashboard() {
         return "bg-gray-100 text-gray-800";
     }
   };
-
 
   const filteredApplications =
     activeFilter === "All"
@@ -216,7 +215,7 @@ export default function ReviewerDashboard() {
           </>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

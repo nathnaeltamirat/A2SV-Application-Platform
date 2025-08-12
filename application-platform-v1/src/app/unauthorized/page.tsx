@@ -4,29 +4,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="bg-gray-100">
-      <header
-        className="flex justify-evenly p-3 flex-wrap bg-white"
-      >
-        <img src="/Images/a2sv.png" className="w-20" />
-        <div className="flex flex-wrap gap-8">
-          <Link href="#" style={{ color: "#374151" }} className="text-sm">
-            The Journey
-          </Link>
-          <Link href="#" style={{ color: "#374151" }} className="text-sm">
-            About
-          </Link>
-          <Link href="#" style={{ color: "#374151" }} className="text-sm">
-            Testimonials
-          </Link>
-          <Link
-            href="/dashboard"
-            className="text-white font-semibold p-1 text-sm px-2   rounded-md"
-            style={{ background: "#4f46e5" }}
-          >
-            Apply Now
-          </Link>
-        </div>
-      </header>
+
       <div className="min-h-screen grid place-items-center ">
         <div className="w-full max-w-md  p-8  text-center my-4 items-center">
           <h1 className="text-7xl font-bold text-indigo-600 mb-2 my-7">401</h1>
@@ -44,7 +22,7 @@ export default function NotFound() {
           </Link>
         </div>
       </div>
-      <Footer />
+  
     </div>
   );
 }

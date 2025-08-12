@@ -1,6 +1,6 @@
 "use client";
-import { fetchReviwedData } from "@/api/reviwer/fetchReviwedData";
-import { updateReviewData } from "@/api/reviwer/updateReviweData";
+import { fetchReviwedData } from "@/app/api/reviwer/fetchReviwedData";
+import { updateReviewData } from "@/app/api/reviwer/updateReviweData";
 import Footer from "@/components/footer/Footer";
 import ReviwerHeader from "@/components/reviewer/ReviwerHeader";
 import {
@@ -33,7 +33,7 @@ export default function ReviewPage() {
       try {
         setLoading(true);
 
-        const application_id = params.application_id;
+        const application_id = params?.application_id;
 
         if (typeof application_id != "string") return;
         const data = await fetchReviwedData(application_id);
@@ -67,7 +67,7 @@ export default function ReviewPage() {
     };
 
     fetchData();
-  }, [params.application_id, router]);
+  }, [params?.application_id, router]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -85,7 +85,7 @@ export default function ReviewPage() {
     e.preventDefault();
     try {
       setLoading(true);
-      const application_id = params.application_id;
+      const application_id = params?.application_id;
       if (typeof application_id != "string") return;
 
       const data = await updateReviewData(application_id, formData);

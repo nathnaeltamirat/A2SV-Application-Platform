@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import AuthHeader from "@/components/auth/authHeader";
 import Footer from "@/components/footer/Footer";
-import { SignedInfo } from "@/api/auth/register/register";
+import { SignedInfo } from "@/app/api/auth/register/register";
 
 export default function SignupPage() {
   useEffect(() => {

@@ -10,7 +10,7 @@ import {
   numberOfApplicants,
   numberUsers,
   recent,
-} from "@/api/admin/adminDashboard";
+} from "@/app/api/admin/adminDashboard";
 import { Recent } from "@/types/admin.type";
 import AdminHeader from "@/components/admin/adminHeader";
 import Footer from "@/components/footer/Footer";

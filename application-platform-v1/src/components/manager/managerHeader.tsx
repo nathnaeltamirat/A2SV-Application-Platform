@@ -8,7 +8,7 @@ const ManagersHeader = () => {
     typeof window !== "undefined" ? localStorage.getItem("full_name") : "";
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white text-black shadow-sm">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center md:justify-around">
         <img src="/Images/a2sv.png" className="w-20" />
 
@@ -82,18 +82,12 @@ const ManagersHeader = () => {
           <div className="flex flex-col space-y-3 py-2 border-t">
             <Link
               className="text-sm text-indigo-600"
-              href="admin/Profile"
+              href="/profile"
               onClick={() => setIsMenuOpen(false)}
             >
               Your Profile
             </Link>
-            <Link
-              className="text-sm"
-              href="admin/Admin User"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {full_name}
-            </Link>
+
             <button
               className="text-gray-600 hover:text-indigo-600 text-left"
               onClick={() => setIsMenuOpen(false)}

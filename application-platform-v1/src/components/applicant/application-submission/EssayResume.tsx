@@ -12,7 +12,7 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 import { set_essay_resumes } from "@/features/applicant/applicantSlice";
 import { setResumeFile } from "@/utils/fileStore";
-import sendApplicantData from "@/api/applicant/sendAppliants";
+import sendApplicantData from "@/app/api/applicant/sendAppliants";
 import { essayResume } from "@/types/applicant.type";
 
 interface Props {
@@ -85,9 +85,9 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
         setErrorMessage(res.message || "Submission failed. Please try again.");
         return;
       }
-      router.push("/applicant/apply/confirmation"); 
-      setResumeFile(null); 
-      reset(); 
+      router.push("/applicant/apply/confirmation");
+      setResumeFile(null);
+      reset();
       if (onNext) onNext();
     } catch (error) {
       setErrorMessage("An unexpected error occurred. Please try again.");
@@ -111,7 +111,7 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
         </div>
       )}
       <form noValidate>
-        <div className="flex flex-col flex-wrap " style={{color:'#374151'}}>
+        <div className="flex flex-col flex-wrap " style={{ color: "#374151" }}>
           <div className="w-full">
             <label htmlFor="essay_about_you" className="block">
               Tell us about yourself.
@@ -126,7 +126,7 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
             />
             <p className="text-red-600">{errors.essay_about_you?.message}</p>
           </div>
-          <div >
+          <div>
             <label htmlFor="essay_why_a2sv" className="block">
               Why do you want to join us?
             </label>
@@ -141,7 +141,7 @@ const EssayProfile = forwardRef<EssayHandle, Props>(({ onNext }, ref) => {
             <p className="text-red-600">{errors.essay_why_a2sv?.message}</p>
           </div>
         </div>
-        <div >
+        <div>
           <input
             style={{ background: "#4f46e5" }}
             className=" w-28 text-white rounded-md p-2"
